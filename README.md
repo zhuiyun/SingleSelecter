@@ -24,8 +24,8 @@ Step 2. Add the dependency
 1.基本数据类型的集合,使用SingleListSelector 
 
     SingleListSelector singleListSelector = new SingleListSelector(this, list);
-    singleListSelector.setListener(this);//回调监听 
-    singleListSelector.show();//展示dialog
+    singleListSelector.setListener(this); 
+    singleListSelector.show();
 
 2.自定义数据类型的使用:
 
