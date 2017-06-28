@@ -30,7 +30,7 @@ Step 2. Add the dependency
 2.自定义数据类型的使用:
 
     SingleSelector singleSelector=new SingleSelector(this, List<Data>);
-        singleSelector.setListener(this);
-        singleSelector.show();
+    singleSelector.setListener(this);
+    singleSelector.show();
 	
 #注意:自定义数据类型时,需要把你的数据类型继承SelectString这个类,并重写其中的getString,方便拿到要展示的数据,自定义数据类型和基本数据类型的控件不要混用,不通用
