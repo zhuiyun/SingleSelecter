@@ -6,5 +6,4 @@ package com.jbstore.o2o.mylibrary;
 
 public abstract class SelectString {
     public abstract String getString();
-
 }

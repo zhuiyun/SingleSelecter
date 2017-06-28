@@ -21,7 +21,7 @@ import java.util.List;
  * Created by gwy on 2017/6/22.
  */
 
-public class SingleSelectView<T extends SelectString> extends View {
+public class SingleListSelectView extends View {
 
     private int visibleCount;
     private int textSize;
@@ -36,22 +36,22 @@ public class SingleSelectView<T extends SelectString> extends View {
     private int height;
     private boolean isFirst = true;
     private int n;
-    private List<T> str = new ArrayList<>();
+    private List str = new ArrayList<>();
     private float downY;
     float offInt;
     int textWidth;
     Paint RectPaint;
 
 
-    public SingleSelectView(Context context) {
+    public SingleListSelectView(Context context) {
         this(context, null);
     }
 
-    public SingleSelectView(Context context, AttributeSet attrs) {
+    public SingleListSelectView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SingleSelectView(Context context, AttributeSet attrs, int defStyle) {
+    public SingleListSelectView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initAttrs(context, attrs);
         setClickable(true);
@@ -98,7 +98,7 @@ public class SingleSelectView<T extends SelectString> extends View {
             isFirst = false;
         }
         if (n >= 0 && n < str.size()) {
-            String s = str.get(n).getString();
+            String s = str.get(n)+"";
             selectPaint.getTextBounds(s, 0, s.length(), rect);
             int selWidth = rect.width();
             int selHeight = rect.height();
@@ -107,18 +107,18 @@ public class SingleSelectView<T extends SelectString> extends View {
 //            canvas.drawRect(rect,RectPaint);
             for (int i = 0; i < str.size(); i++) {
                 if (n > 0 && n < str.size() - 1) {
-                    normalPaint.getTextBounds(str.get(n - 1).getString(), 0, str.get(n - 1).getString().length(), rect);
+                    normalPaint.getTextBounds(str.get(n - 1)+"", 0, (str.get(n - 1)+"").length(), rect);
                     int mHeight = rect.height();
-                    normalPaint.getTextBounds(str.get(n + 1).getString(), 0, str.get(n + 1).getString().length(), rect);
+                    normalPaint.getTextBounds(str.get(n + 1)+"", 0, (str.get(n + 1)+"").length(), rect);
                     int mHeight1 = rect.height();
                     textWidth = (mHeight + mHeight1) / 2;
 
                 }
                 if (i != n) {
-                    normalPaint.getTextBounds(str.get(i).getString(), 0, str.get(i).getString().length(), rect);
+                    normalPaint.getTextBounds(str.get(i)+"", 0, (str.get(i)+"").length(), rect);
                     int selWidth1 = rect.width();
                     int selHeight1 = rect.height();
-                    canvas.drawText(str.get(i).getString(), width / 2 - selWidth1 / 2, (height / 2 + (i - n) * anInt + textWidth / 2 + offInt), normalPaint);
+                    canvas.drawText(str.get(i)+"", width / 2 - selWidth1 / 2, (height / 2 + (i - n) * anInt + textWidth / 2 + offInt), normalPaint);
                 }
             }
         }
@@ -144,7 +144,6 @@ public class SingleSelectView<T extends SelectString> extends View {
                         if (n > 0) {
                             n -= 1;
                             downY = scrollY;
-
                             offInt = 0;
                         }
 
@@ -171,7 +170,7 @@ public class SingleSelectView<T extends SelectString> extends View {
         return super.onTouchEvent(event);
     }
 
-    public void setData(List<T> list) {
+    public void setData(List list) {
         str.addAll(list);
         n = str.size() / 2;
         invalidate();
