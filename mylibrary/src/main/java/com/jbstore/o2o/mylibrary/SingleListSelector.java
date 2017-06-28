@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +41,16 @@ public class SingleListSelector {
                 int select = selectView.getSelect();
                 if (select < str.size()) {
                     listener.select(str.get(select) + "", select);
+                    dismiss();
+                } else {
+                    Toast.makeText(mContext, "未选择项", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
+                dismiss();
             }
         });
         selectView = (SingleListSelectView) view.findViewById(R.id.myView);
